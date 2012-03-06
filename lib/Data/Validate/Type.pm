@@ -71,21 +71,21 @@ our $VERSION = '1.0.0';
 
 	# Call with explicit package name.
 	use Data::Validate::Type;
-	if ( Data::Validate::Type::is_scalar( 'test' ) )
+	if ( Data::Validate::Type::is_string( 'test' ) )
 	{
 		# ...
 	}
 
 	# Import specific functions.
-	use Data::Validate::Type qw( is_scalar );
-	if ( is_scalar( 'test' ) )
+	use Data::Validate::Type qw( is_string );
+	if ( is_string( 'test' ) )
 	{
 		# ...
 	}
 
 	# Import functions for a given paradigm.
 	use Data::Validate::Type qw( :boolean_tests );
-	if ( is_scalar( 'test' ) )
+	if ( is_string( 'test' ) )
 	{
 		# ...
 	}
