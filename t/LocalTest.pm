@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Carp;
-use Data::Dumper;
+use Data::Dump;
 use Data::Validate::Type;
 use Test::Exception;
 use Test::More;
@@ -208,9 +208,6 @@ sub ok_run_tests
 	croak "The argument 'pass_tests' must be defined"
 		if !defined( $pass_tests );
 	
-	local $Data::Dumper::Indent = 0;
-	local $Data::Dumper::Terse = 1;
-	
 	my $function = $Data::Validate::Type::{$function_name};
 	
 	my $tests = LocalTest::get_tests();
@@ -234,7 +231,7 @@ sub ok_run_tests
 			is(
 				$function->( $data, %$function_args ),
 				$expected_success,
-				"$function_name( " . Dumper( $data ) . ' ) returns ' . ( $expected_success ? 'true' : 'false' ) . '.',
+				"$function_name( " . Data::Dump::dump( $data ) . ' ) returns ' . ( $expected_success ? 'true' : 'false' ) . '.',
 			) || diag( "Failed test '$key'." );
 		}
 		elsif ( $type eq 'assert' )
@@ -246,7 +243,7 @@ sub ok_run_tests
 					{
 						$function->( $data, %$function_args );
 					},
-					"$function_name( " . Dumper( $data ) . ' )',
+					"$function_name( " . Data::Dump::dump( $data ) . ' )',
 				) || diag( "Failed test '$key'." );
 			}
 			else
@@ -256,7 +253,7 @@ sub ok_run_tests
 					{
 						$function->( $data, %$function_args );
 					},
-					"$function_name( " . Dumper( $data ) . ' )',
+					"$function_name( " . Data::Dump::dump( $data ) . ' )',
 				) || diag( "Failed test '$key'." );
 			}
 		}
@@ -265,7 +262,7 @@ sub ok_run_tests
 			is_deeply(
 				$function->( $data, %$function_args ),
 				$expected_success ? $data : undef,
-				"$function_name( " . Dumper( $data ) . ' )',
+				"$function_name( " . Data::Dump::dump( $data ) . ' )',
 			) || diag( "Failed test '$key'." );
 		}
 	}
