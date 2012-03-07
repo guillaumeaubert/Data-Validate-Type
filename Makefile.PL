@@ -7,7 +7,7 @@ WriteMakefile
           'VERSION_FROM' => 'lib/Data/Validate/Type.pm',
           'PREREQ_PM' => {
                            'Carp' => 0,
-                           'Data::Dumper' => 0,
+                           'Data::Dump' => 0,
                            'File::Spec' => 0,
                            'Params::Util' => 1,
                            'Test::Exception' => 0,

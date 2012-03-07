@@ -11,7 +11,7 @@ my $builder = Module::Build->new(
 	build_requires       =>
 	{
 		'Carp'                  => 0,
-		'Data::Dumper'          => 0,
+		'Data::Dump'            => 0,
 		'File::Spec'            => 0,
 		'Test::Exception'       => 0,
 		'Test::More'            => 0.94, # Required for subtest().
