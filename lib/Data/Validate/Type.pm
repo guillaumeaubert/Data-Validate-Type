@@ -354,7 +354,7 @@ sub is_number
 	# appears to force reset the flags for scalars only
 	# (found after quite a bit of experimentation).
 	$variable = '' . $variable
-		if ( !$^V || $^V lt v5.9.0 ) && is_string( $variable );
+		if ( !$^V || $^V lt v5.9.0 ) && is_string( $variable ); ## no critic (ValuesAndExpressions::ProhibitMismatchedOperators)
 	
 	# Check variable.
 	return 0 unless defined( Params::Util::_NUMBER( $variable ) );
