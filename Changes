@@ -1,5 +1,9 @@
 Revision history for Data-Validate-Type
 
+v1.0.2  03/09/2012
+        Fixed issue in Perl 5.8 with strings passed to assert_number() in
+        specific contexts.
+
 v1.0.1  03/07/2012
         Refactored to use Data::Dump.
         Fixed synopsis.
