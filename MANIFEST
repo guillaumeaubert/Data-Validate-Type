@@ -9,11 +9,13 @@ MANIFEST.SKIP
 META.yml
 README
 t/00-load.t
-t/30-number.t
-t/25-coderef.t
-t/15-arrayref.t
 t/10-string.t
+t/15-arrayref.t
 t/20-hashref.t
+t/25-coderef.t
+t/30-number.t
+t/35-instance.t
+t/36-instance-inheritance.t
 t/90-export-all.t
 t/91-export-boolean_functions.t
 t/92-export-assertions.t
