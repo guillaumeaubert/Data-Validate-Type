@@ -24,7 +24,7 @@ no_index:
 provides:
   Data::Validate::Type:
     file: lib/Data/Validate/Type.pm
-    version: v1.0.2
+    version: v1.1.0
 requires:
   perl: 5.006
 resources:
@@ -32,4 +32,4 @@ resources:
   homepage: https://metacpan.org/release/Data-Validate-Type
   license: http://opensource.org/licenses/artistic-license.php
   repository: https://sourceforge.net/p/perldatatype/code
-version: v1.0.2
+version: v1.1.0
