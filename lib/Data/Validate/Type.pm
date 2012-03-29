@@ -15,6 +15,7 @@ my @boolean_functions_list = qw(
 	is_hashref
 	is_coderef
 	is_number
+	is_instance
 );
 
 my @assertion_functions_list = qw(
@@ -23,6 +24,7 @@ my @assertion_functions_list = qw(
 	assert_hashref
 	assert_coderef
 	assert_number
+	assert_instance
 );
 
 my @filtering_functions_list = qw(
@@ -31,6 +33,7 @@ my @filtering_functions_list = qw(
 	filter_hashref
 	filter_coderef
 	filter_number
+	filter_instance
 );
 
 our @EXPORT_OK =
@@ -365,6 +368,48 @@ sub is_number
 }
 
 
+=head2 is_instance()
+
+Return a boolean indicating if the variable is an instance of the given class.
+
+Note that this handles inheritance properly, so it will return true if the
+variable is an instance of a subclass of the class given.
+
+	my $is_instance = Data::Validate::Type::is_instance(
+		$variable,
+		class => $class,
+	);
+
+Parameters:
+
+=over 4
+
+=item * class
+
+Required, the name of the class to check the variable against.
+
+=back
+
+=cut
+
+sub is_instance
+{
+	my ( $variable, %args ) = @_;
+	
+	# Check parameters.
+	my $class = delete( $args{'class'} );
+	croak 'A class argument is required'
+		if !defined( $class ) || $class eq '';
+	croak 'Arguments not recognized: ' . Data::Dump::dump( %args )
+		unless scalar( keys %args ) == 0;
+	
+	# Check variable.
+	return 0 unless defined( Params::Util::_INSTANCE( $variable, $class ) );
+	
+	return 1;
+}
+
+
 =head1 ASSERTION-BASED FUNCTIONS
 
 Functions in this group do not return anything, but will die when the parameters
@@ -547,6 +592,41 @@ sub assert_number
 }
 
 
+=head2 assert_instance()
+
+Die unless the variable is an instance of the given class.
+
+Note that this handles inheritance properly, so it will not die if the
+variable is an instance of a subclass of the class given.
+
+	Data::Validate::Type::assert_instance(
+		$variable,
+		class => $class,
+	);
+
+Parameters:
+
+=over 4
+
+=item * class
+
+Required, the name of the class to check the variable against.
+
+=back
+
+=cut
+
+sub assert_instance
+{
+	my ( $variable, %args ) = @_;
+	
+	croak 'Not an instance of the class'
+		unless is_instance( $variable, %args );
+	
+	return;
+}
+
+
 =head1 FILTERING FUNCTIONS
 
 Functions in this group return the variable tested against when it matches the
@@ -723,6 +803,41 @@ sub filter_number
 		? $variable
 		: undef;
 }
+
+
+=head2 filter_instance()
+
+Return the variable passed if it is an instance of the given class.
+
+Note that this handles inheritance properly, so it will return the variable if
+it is an instance of a subclass of the class given.
+
+	Data::Validate::Type::filter_instance(
+		$variable,
+		class => $class,
+	);
+
+Parameters:
+
+=over 4
+
+=item * class
+
+Required, the name of the class to check the variable against.
+
+=back
+
+=cut
+
+sub filter_instance
+{
+	my ( $variable, %args ) = @_;
+	
+	return is_instance( $variable, %args )
+		? $variable
+		: undef;
+}
+
 
 
 =head1 AUTHOR
