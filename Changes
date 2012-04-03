@@ -1,5 +1,9 @@
 Revision history for Data-Validate-Type
 
+v1.1.1  04/02/2012
+        Fixed issue in Perl 5.10 with strings passed to assert_number() in
+        specific contexts.
+
 v1.1.0  03/29/2012
         Added is_instance(), assert_instance() and filter_instance().
 
