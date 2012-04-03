@@ -356,8 +356,10 @@ sub is_number
 	# since 5.8 is old I'm simply using the following workaround which
 	# appears to force reset the flags for scalars only
 	# (found after quite a bit of experimentation).
+	# Update 2012-04-02: apparently the problem exists on 5.10.0 as well,
+	# but stopped with 5.10.1.
 	$variable = '' . $variable
-		if ( !$^V || $^V lt v5.9.0 ) && is_string( $variable ); ## no critic (ValuesAndExpressions::ProhibitMismatchedOperators)
+		if ( !$^V || $^V lt v5.10.1 ) && is_string( $variable ); ## no critic (ValuesAndExpressions::ProhibitMismatchedOperators)
 	
 	# Check variable.
 	return 0 unless defined( Params::Util::_NUMBER( $variable ) );
