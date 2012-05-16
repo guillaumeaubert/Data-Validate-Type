@@ -1,5 +1,8 @@
 Revision history for Data-Validate-Type
 
+v1.1.2  05/15/2012
+        Excluded non-core PerlCritic policies for tests.
+
 v1.1.1  04/02/2012
         Fixed issue in Perl 5.10 with strings passed to assert_number() in
         specific contexts.
