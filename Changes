@@ -1,22 +1,22 @@
 Revision history for Data-Validate-Type
 
 v1.1.2  05/15/2012
-        Excluded non-core PerlCritic policies for tests.
+        * Excluded non-core PerlCritic policies for tests.
 
 v1.1.1  04/02/2012
-        Fixed issue in Perl 5.10 with strings passed to assert_number() in
-        specific contexts.
+        * Fixed issue in Perl 5.10 with strings passed to assert_number() in
+          specific contexts.
 
 v1.1.0  03/29/2012
-        Added is_instance(), assert_instance() and filter_instance().
+        * Added is_instance(), assert_instance() and filter_instance().
 
 v1.0.2  03/09/2012
-        Fixed issue in Perl 5.8 with strings passed to assert_number() in
-        specific contexts.
+        * Fixed issue in Perl 5.8 with strings passed to assert_number() in
+          specific contexts.
 
 v1.0.1  03/07/2012
-        Refactored to use Data::Dump.
-        Fixed synopsis.
+        * Refactored to use Data::Dump.
+        * Fixed synopsis.
 
 v1.0.0  03/06/2012
-        First public release.
+        * First public release.
