@@ -50,6 +50,8 @@ foreach my $test ( @$tests )
 								empty_arrayref
 								non_empty_arrayref
 								blessed_arrayref
+								arrayref_of_hashrefs
+								arrayref_of_mixed_data
 							)
 						],
 					);
@@ -74,6 +76,8 @@ foreach my $test ( @$tests )
 								empty_arrayref
 								non_empty_arrayref
 								blessed_arrayref
+								arrayref_of_hashrefs
+								arrayref_of_mixed_data
 							)
 						],
 					);
@@ -96,6 +100,8 @@ foreach my $test ( @$tests )
 							qw(
 								non_empty_arrayref
 								blessed_arrayref
+								arrayref_of_hashrefs
+								arrayref_of_mixed_data
 							)
 						],
 					);
@@ -118,6 +124,8 @@ foreach my $test ( @$tests )
 							qw(
 								empty_arrayref
 								non_empty_arrayref
+								arrayref_of_hashrefs
+								arrayref_of_mixed_data
 							)
 						],
 					);
@@ -141,6 +149,8 @@ foreach my $test ( @$tests )
 								empty_arrayref
 								non_empty_arrayref
 								blessed_arrayref
+								arrayref_of_hashrefs
+								arrayref_of_mixed_data
 							)
 						],
 					);
