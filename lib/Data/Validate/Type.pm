@@ -193,6 +193,18 @@ dereferenced into an array.
 		allow_empty => 1,
 		no_blessing => 0,
 	);
+	
+	# Check if the variable is an arrayref of hashrefs.
+	my $is_arrayref = Data::Validate::Type::is_arrayref(
+		$variable,
+		allow_empty           => 1,
+		no_blessing           => 0,
+		element_validate_type =>
+			sub
+			{
+				return Data::Validate::Type::is_hashref( $_[0] );
+			},
+	);
 
 Parameters:
 
@@ -206,6 +218,12 @@ Boolean, default 1. Allow the array to be empty or not.
 
 Boolean, default 0. Require that the variable is not blessed.
 
+=item * element_validate_type
+
+None by default. Set it to a coderef to validate the elements in the array.
+The coderef will be passed the element to validate as first parameter, and it
+must return a boolean indicating whether the element was valid or not.
+
 =back
 
 =cut
@@ -218,6 +236,9 @@ sub is_arrayref
 	my $allow_empty = delete( $args{'allow_empty'} );
 	$allow_empty = 1 unless defined( $allow_empty );
 	my $no_blessing = delete( $args{'no_blessing'} ) || 0;
+	my $element_validate_type = delete( $args{'element_validate_type'} );
+	croak '"element_validate_type" must be a coderef'
+		if defined( $element_validate_type ) && !is_coderef( $element_validate_type );
 	croak 'Arguments not recognized: ' . Data::Dump::dump( %args )
 		unless scalar( keys %args ) == 0;
 	
@@ -230,6 +251,16 @@ sub is_arrayref
 	# https://rt.cpan.org/Ticket/Display.html?id=75561, but until this is fixed
 	# we need to handle the no_blessing option manually here.
 	return 0 if $no_blessing && ref( $variable ) ne 'ARRAY';
+	
+	# If we have an element validator specified, now that we know that we have
+	# an array, it's a good time to test the individual elements.
+	if ( defined( $element_validate_type ) )
+	{
+		foreach my $element ( @$variable )
+		{
+			return 0 if !$element_validate_type->( $element );
+		}
+	}
 	
 	return 1;
 }
@@ -466,6 +497,18 @@ array.
 		allow_empty => 1,
 		no_blessing => 0,
 	);
+	
+	# Require the variable to be an arrayref of hashrefs.
+	Data::Validate::Type::assert_arrayref(
+		$variable,
+		allow_empty           => 1,
+		no_blessing           => 0,
+		element_validate_type =>
+			sub
+			{
+				return Data::Validate::Type::is_hashref( $_[0] );
+			},
+	);
 
 Parameters:
 
@@ -478,6 +521,12 @@ Boolean, default 1. Allow the array to be empty or not.
 =item * no_blessing
 
 Boolean, default 0. Require that the variable is not blessed.
+
+=item * element_validate_type
+
+None by default. Set it to a coderef to validate the elements in the array.
+The coderef will be passed the element to validate as first parameter, and it
+must return a boolean indicating whether the element was valid or not.
 
 =back
 
@@ -682,6 +731,18 @@ array, otherwise undef.
 		allow_empty => 1,
 		no_blessing => 0,
 	);
+	
+	# Only return the variable if it is an arrayref of hashrefs.
+	Data::Validate::Type::filter_arrayref(
+		$variable,
+		allow_empty           => 1,
+		no_blessing           => 0,
+		element_validate_type =>
+			sub
+			{
+				return Data::Validate::Type::is_hashref( $_[0] );
+			},
+	);
 
 Parameters:
 
@@ -694,6 +755,12 @@ Boolean, default 1. Allow the array to be empty or not.
 =item * no_blessing
 
 Boolean, default 0. Require that the variable is not blessed.
+
+=item * element_validate_type
+
+None by default. Set it to a coderef to validate the elements in the array.
+The coderef will be passed the element to validate as first parameter, and it
+must return a boolean indicating whether the element was valid or not.
 
 =back
 
