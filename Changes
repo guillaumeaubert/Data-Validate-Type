@@ -1,5 +1,9 @@
 Revision history for Data-Validate-Type
 
+v1.2.0  07/27/2012
+        * Added ability to validate individual elements in arrayrefs
+          (element_validate_type).
+
 v1.1.2  05/15/2012
         * Excluded non-core PerlCritic policies for tests.
 

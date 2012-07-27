@@ -63,11 +63,11 @@ Data::Validate::Type - Public interface encapsulating Params::Util to offer data
 
 =head1 VERSION
 
-Version 1.1.2
+Version 1.2.0
 
 =cut
 
-our $VERSION = '1.1.2';
+our $VERSION = '1.2.0';
 
 
 =head1 SYNOPSIS
