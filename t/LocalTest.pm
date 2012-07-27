@@ -27,8 +27,7 @@ our $VERSION = '1.0.0';
 =head1 SYNOPSIS
 
 	my $tests = LocalTest::get_tests();
-	
-	
+
 
 =head1 DESCRIPTION
 
