@@ -44,7 +44,7 @@
    "provides" : {
       "Data::Validate::Type" : {
          "file" : "lib/Data/Validate/Type.pm",
-         "version" : "v1.2.0"
+         "version" : "v1.3.0"
       }
    },
    "release_status" : "stable",
@@ -60,5 +60,5 @@
          "url" : "https://sourceforge.net/p/perldatatype/code"
       }
    },
-   "version" : "v1.2.0"
+   "version" : "v1.3.0"
 }
