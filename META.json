@@ -21,10 +21,7 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Carp" : "0",
-            "Data::Dump" : "0",
             "File::Spec" : "0",
-            "Params::Util" : "1",
             "Test::Exception" : "0",
             "Test::More" : "0.94"
          }
@@ -36,6 +33,10 @@
       },
       "runtime" : {
          "requires" : {
+            "Carp" : "0",
+            "Data::Dump" : "0",
+            "Exporter" : "0",
+            "Params::Util" : "1",
             "perl" : "5.006"
          }
       }

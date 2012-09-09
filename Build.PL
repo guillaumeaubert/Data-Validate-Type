@@ -10,16 +10,17 @@ my $builder = Module::Build->new(
 	dist_version_from    => 'lib/Data/Validate/Type.pm',
 	build_requires       =>
 	{
-		'Carp'                  => 0,
-		'Data::Dump'            => 0,
 		'File::Spec'            => 0,
 		'Test::Exception'       => 0,
 		'Test::More'            => 0.94, # Required for subtest().
-		'Params::Util'          => 1.00, # Stable versions only.
 	},
 	requires             =>
 	{
-		'perl'         => 5.006,
+		'perl'                  => 5.006,
+		'Carp'                  => 0,
+		'Data::Dump'            => 0,
+		'Exporter'              => 0,
+		'Params::Util'          => 1.00, # Stable versions only.
 	},
 	add_to_cleanup       =>
 	[
