@@ -5,7 +5,7 @@ use Module::Build;
 
 my $builder = Module::Build->new(
 	module_name          => 'Data::Validate::Type',
-	license              => 'artistic',
+	license              => 'GPL_3',
 	dist_author          => q{Guillaume Aubert <aubertg@cpan.org>},
 	dist_version_from    => 'lib/Data/Validate/Type.pm',
 	build_requires       =>
