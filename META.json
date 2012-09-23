@@ -57,7 +57,7 @@
          "http://www.gnu.org/licenses/gpl-3.0.txt"
       ],
       "repository" : {
-         "url" : "https://sourceforge.net/p/perldatatype/code"
+         "url" : "https://github.com/guillaumeaubert/Data-Validate-Type"
       }
    },
    "version" : "v1.3.0"
