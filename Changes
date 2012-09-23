@@ -1,5 +1,8 @@
 Revision history for Data-Validate-Type
 
+v1.3.1  09/22/2012
+        * Moved repository to GitHub.
+
 v1.3.0  09/08/2012
         * Re-licensed as GPLv3, to allow inclusion in Fedora.
 
