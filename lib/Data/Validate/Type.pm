@@ -977,6 +977,12 @@ L<http://search.cpan.org/dist/Data-Validate-Type/>
 =back
 
 
+=head1 ACKNOWLEDGEMENTS
+
+Thanks to Adam Kennedy for writing L<Params::Util>. This module started as an
+encapsulation for Params::Util and I learnt quite a bit from it.
+
+
 =head1 COPYRIGHT & LICENSE
 
 Copyright 2012 Guillaume Aubert.
