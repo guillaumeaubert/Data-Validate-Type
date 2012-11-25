@@ -7,7 +7,7 @@ use base 'Exporter';
 
 use Carp;
 use Data::Dump qw();
-use Params::Util qw();
+use Scalar::Util qw();
 
 my @boolean_functions_list = qw(
 	is_string
@@ -168,16 +168,12 @@ sub is_string
 		unless scalar( keys %args ) == 0;
 	
 	# Check variable.
-	return 0 unless defined( $variable );
+	return 0 if !defined( $variable ) || ref( $variable );
 	
-	if ( $variable eq '' )
-	{
-		return $allow_empty
-			? 1
-			: 0;
-	}
+	# Check length if we don't allow empty strings.
+	return 0 if !$allow_empty && length( $variable ) == 0;
 	
-	return defined( Params::Util::_STRING( $variable ) ) ? 1 : 0;
+	return 1;
 }
 
 
@@ -243,14 +239,26 @@ sub is_arrayref
 		unless scalar( keys %args ) == 0;
 	
 	# Check variable.
-	return 0 unless defined( Params::Util::_ARRAYLIKE( $variable ) );
-	return 0 if !$allow_empty && scalar( @$variable ) == 0;
+	return 0 if !defined( $variable ) || !ref( $variable );
 	
-	# Params::Util has a bug that detects blessed arrays correctly in pure perl
-	# mode, but not in default mode. I filed a bug report at
-	# https://rt.cpan.org/Ticket/Display.html?id=75561, but until this is fixed
-	# we need to handle the no_blessing option manually here.
-	return 0 if $no_blessing && ref( $variable ) ne 'ARRAY';
+	if ( $no_blessing )
+	{
+		# The variable must be a standard arrayref.
+		return 0 if ref( $variable ) ne 'ARRAY';
+	}
+	else
+	{
+		# Check that the variable is either an array or allows
+		# dereferencing as one.
+		return 0 if !
+			(
+				( Scalar::Util::reftype( $variable ) eq 'ARRAY' )
+				|| overload::Method( $variable, '@{}' )
+			);
+	}
+	
+	# Check size of the array if we require a non-empty array.
+	return 0 if !$allow_empty && scalar( @$variable ) == 0;
 	
 	# If we have an element validator specified, now that we know that we have
 	# an array, it's a good time to test the individual elements.
@@ -307,13 +315,26 @@ sub is_hashref
 		unless scalar( keys %args ) == 0;
 	
 	# Check variable.
-	return 0 unless defined( Params::Util::_HASHLIKE( $variable ) );
-	return 0 if !$allow_empty && scalar( keys %$variable ) == 0;
+	return 0 if !defined( $variable ) || !ref( $variable );
 	
-	# Params::Util has a bug that detects blessed hashes correctly in pure perl
-	# mode, but not in default mode. Until this is fixed we need to handle the
-	# no_blessing option manually here.
-	return 0 if $no_blessing && ref( $variable ) ne 'HASH';
+	if ( $no_blessing )
+	{
+		# The variable must be a standard hashref.
+		return 0 if ref( $variable ) ne 'HASH';
+	}
+	else
+	{
+		# Check that the variable is either a hashref or allows dereferencing
+		# as one.
+		return 0 if !
+			(
+				( Scalar::Util::reftype( $variable ) eq 'HASH' )
+				|| overload::Method( $variable, '%{}' )
+			);
+	}
+	
+	# If we don't allow empty hashes, check keys.
+	return 0 if !$allow_empty && scalar( keys %$variable ) == 0;
 	
 	return 1;
 }
@@ -337,7 +358,10 @@ sub is_coderef
 		unless scalar( keys %args ) == 0;
 	
 	# Check variable.
-	return defined( Params::Util::_CODE( $variable ) ) ? 1 : 0;
+	return 0 if !defined( $variable ) || !ref( $variable );
+	return 0 if ref( $variable ) ne 'CODE';
+	
+	return 1;
 }
 
 
@@ -381,19 +405,13 @@ sub is_number
 	croak 'Arguments not recognized: ' . Data::Dump::dump( %args )
 		unless scalar( keys %args ) == 0;
 	
-	# On Perl 5.8, when using the non-PP version of Params::Util,
-	# Params::Util::_NUMBER() identifies strings (empty or not) as numbers.
-	# This seems to be a problem deep in perl.h with the sv* flags, but
-	# since 5.8 is old I'm simply using the following workaround which
-	# appears to force reset the flags for scalars only
-	# (found after quite a bit of experimentation).
-	# Update 2012-04-02: apparently the problem exists on 5.10.0 as well,
-	# but stopped with 5.10.1.
-	$variable = '' . $variable
-		if ( !$^V || $^V lt v5.10.1 ) && is_string( $variable ); ## no critic (ValuesAndExpressions::ProhibitMismatchedOperators)
-	
 	# Check variable.
-	return 0 unless defined( Params::Util::_NUMBER( $variable ) );
+	return 0 if !defined( $variable ) || ref( $variable );
+	
+	# Requires Scalar::Util v1.18 or higher.
+	return 0 if !Scalar::Util::looks_like_number( $variable );
+	
+	# Check extra restrictions.
 	return 0 if $positive && $variable < 0;
 	return 0 if $strictly_positive && $variable <= 0;
 	
@@ -437,7 +455,10 @@ sub is_instance
 		unless scalar( keys %args ) == 0;
 	
 	# Check variable.
-	return 0 unless defined( Params::Util::_INSTANCE( $variable, $class ) );
+	return 0 if !defined( $variable ) || !Scalar::Util::blessed( $variable );
+	
+	# Test that the object is a member if the class.
+	return 0 if !$variable->isa( $class );
 	
 	return 1;
 }
