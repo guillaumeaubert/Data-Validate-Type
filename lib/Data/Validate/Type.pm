@@ -58,7 +58,7 @@ our %EXPORT_TAGS =
 
 =head1 NAME
 
-Data::Validate::Type - Public interface encapsulating Params::Util to offer data type validation functions that pass PerlCritic.
+Data::Validate::Type - Data type validation functions.
 
 
 =head1 VERSION
@@ -96,7 +96,7 @@ our $VERSION = '1.3.1';
 
 =head1 DESCRIPTION
 
-Params::Util is a wonderful module, but suffers from a few drawbacks:
+L<Params::Util> is a wonderful module, but suffers from a few drawbacks:
 
 =over 4
 
@@ -113,18 +113,23 @@ problematic to import.
 need to not be empty to be valid (see _ARRAY0/_ARRAY for example), which is
 counter-intuitive.
 
+=item * In Pure Perl mode, the functions are created via eval, which causes
+issues for L<Devel::Cover> in taint mode.
+
 =back
 
 Those drawbacks are purely cosmetic and don't affect the usefulness of the
-functions, so this module encapsulates the functions to offer an API that
-fixes these problems.
+functions, except for the last one. This module used to encapsulate
+L<Params::Util>, but I had to refactor it out to fix the issues with
+L<Devel::Cover>.
 
 Please note that I prefer long function names that are descriptive, to arcane
 short ones. This increases readability, and the bulk of the typing can be
 spared with the use of a good IDE like Padre.
 
-Also, this is work in progress - I haven't encapsulated all the functions from
-C<Params::Util> yet, and if you need one in particular feel free to contact me.
+Also, this is work in progress - There is more functions that should be added
+here, if you need one in particular feel free to contact me.
+
 
 =head1 BOOLEAN TEST FUNCTIONS
 
