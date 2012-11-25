@@ -20,7 +20,7 @@ my $builder = Module::Build->new(
 		'Carp'                  => 0,
 		'Data::Dump'            => 0,
 		'Exporter'              => 0,
-		'Params::Util'          => 1.00, # Stable versions only.
+		'Scalar::Util'          => 1.18, # Recent 'looks_like_number'.
 	},
 	add_to_cleanup       =>
 	[

@@ -10,7 +10,7 @@ WriteMakefile
                    'Data::Dump' => 0,
                    'Exporter' => 0,
                    'File::Spec' => 0,
-                   'Params::Util' => '1',
+                   'Scalar::Util' => '1.18',
                    'Test::Exception' => 0,
                    'Test::More' => '0.94'
                  },
