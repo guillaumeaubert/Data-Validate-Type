@@ -76,6 +76,11 @@ my $builder = $class->new(
 			[
 				't/LocalTest.pm',
 			],
+			package =>
+			[
+				'LocalTest',
+				'LocalTestParent',
+			],
 		},
 	},
 );
