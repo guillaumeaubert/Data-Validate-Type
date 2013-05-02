@@ -17,11 +17,11 @@ LocalTest - Test data and functions for L<Data::Validate::Type>.
 
 =head1 VERSION
 
-Version 1.4.1
+Version 1.4.2
 
 =cut
 
-our $VERSION = '1.4.1';
+our $VERSION = '1.4.2';
 
 
 =head1 SYNOPSIS

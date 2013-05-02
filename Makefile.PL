@@ -12,6 +12,7 @@ WriteMakefile
                    'File::Spec' => 0,
                    'Scalar::Util' => '1.18',
                    'Test::Exception' => 0,
+                   'Test::FailWarnings' => 0,
                    'Test::More' => '0.94'
                  },
   'INSTALLDIRS' => 'site',

@@ -1,5 +1,8 @@
 Revision history for Data-Validate-Type
 
+v1.4.2  2013-05-01
+        * Fixed missing prerequisite.
+
 v1.4.1  2013-05-01
         * Moved release tests to xt/, added new release tests.
         * Added Test::FailWarnings to all tests.
