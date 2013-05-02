@@ -21,8 +21,8 @@ perldoc command.
 
 You can also look for information at:
 
-    RT, CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Data-Validate-Type
+    GitHub (report bugs here)
+        https://github.com/guillaumeaubert/Data-Validate-Type/issues
 
     AnnoCPAN, Annotated CPAN documentation
         http://annocpan.org/dist/Data-Validate-Type

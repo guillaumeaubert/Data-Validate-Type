@@ -68,7 +68,7 @@ my $builder = $class->new(
 		{
 			repository  => 'https://github.com/guillaumeaubert/Data-Validate-Type',
 			homepage    => 'https://metacpan.org/release/Data-Validate-Type',
-			bugtracker  => 'http://rt.cpan.org/NoAuth/ReportBug.html?Queue=data-validate-type',
+			bugtracker  => 'https://github.com/guillaumeaubert/Data-Validate-Type/issues',
 		},
 		no_index                =>
 		{
