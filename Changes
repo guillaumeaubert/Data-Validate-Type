@@ -1,5 +1,13 @@
 Revision history for Data-Validate-Type
 
+v1.4.1  2013-05-01
+        * Moved release tests to xt/, added new release tests.
+        * Added Test::FailWarnings to all tests.
+        * Moved request tracker from RT to GitHub.
+        * Changed links from Search CPAN to MetaCPAN.
+        * Updated no_index meta information.
+        * Added information on how to contribute examples.
+
 v1.4.0  2012-11-24
         * Refactored uses of Params::Util, which didn't work with Devel::Cover
           in taint mode.
