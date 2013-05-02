@@ -16,6 +16,10 @@
    "no_index" : {
       "file" : [
          "t/LocalTest.pm"
+      ],
+      "package" : [
+         "LocalTest",
+         "LocalTestParent"
       ]
    },
    "prereqs" : {

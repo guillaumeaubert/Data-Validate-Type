@@ -18,6 +18,9 @@ name: Data-Validate-Type
 no_index:
   file:
     - t/LocalTest.pm
+  package:
+    - LocalTest
+    - LocalTestParent
 provides:
   Data::Validate::Type:
     file: lib/Data/Validate/Type.pm
