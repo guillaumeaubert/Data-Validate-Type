@@ -1,36 +1,36 @@
 Revision history for Data-Validate-Type
 
-v1.4.0  11/24/2012
+v1.4.0  2012-11-24
         * Refactored uses of Params::Util, which didn't work with Devel::Cover
           in taint mode.
 
-v1.3.1  09/22/2012
+v1.3.1  2012-09-22
         * Moved repository to GitHub.
 
-v1.3.0  09/08/2012
+v1.3.0  2012-09-08
         * Re-licensed as GPLv3, to allow inclusion in Fedora.
 
-v1.2.0  07/27/2012
+v1.2.0  2012-07-27
         * Added ability to validate individual elements in arrayrefs
           (element_validate_type).
 
-v1.1.2  05/15/2012
+v1.1.2  2012-05-15
         * Excluded non-core PerlCritic policies for tests.
 
-v1.1.1  04/02/2012
+v1.1.1  2012-04-02
         * Fixed issue in Perl 5.10 with strings passed to assert_number() in
           specific contexts.
 
-v1.1.0  03/29/2012
+v1.1.0  2012-03-29
         * Added is_instance(), assert_instance() and filter_instance().
 
-v1.0.2  03/09/2012
+v1.0.2  2012-03-09
         * Fixed issue in Perl 5.8 with strings passed to assert_number() in
           specific contexts.
 
-v1.0.1  03/07/2012
+v1.0.1  2012-03-07
         * Refactored to use Data::Dump.
         * Fixed synopsis.
 
-v1.0.0  03/06/2012
+v1.0.0  2012-03-06
         * First public release.
