@@ -24,8 +24,11 @@ t/91-export-boolean_functions.t
 t/92-export-assertions.t
 t/93-export-filters.t
 t/LocalTest.pm
-t/manifest.t
-t/module_versions.t
-t/perlcritic.t
-t/pod-coverage.t
-t/pod.t
+xt/changes.t
+xt/kwalitee.t
+xt/manifest.t
+xt/module_versions.t
+xt/perlcritic.t
+xt/pod-coverage.t
+xt/pod.t
+xt/unix_eol.t
