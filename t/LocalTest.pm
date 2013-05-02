@@ -333,9 +333,9 @@ L<http://annocpan.org/dist/Data-Validate-Type>
 
 L<http://cpanratings.perl.org/d/Data-Validate-Type>
 
-=item * Search CPAN
+=item * MetaCPAN
 
-L<http://search.cpan.org/dist/Data-Validate-Type/>
+L<https://metacpan.org/release/Data-Validate-Type>
 
 =back
 
