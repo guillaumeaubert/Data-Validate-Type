@@ -3,7 +3,9 @@
 use strict;
 use warnings;
 
+use Test::FailWarnings;
 use Test::More;
+
 
 my $expect_exported =
 {

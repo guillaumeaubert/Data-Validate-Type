@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 use Data::Validate::Type;
+use Test::FailWarnings;
 use Test::More tests => 3;
 
 use lib 't/';

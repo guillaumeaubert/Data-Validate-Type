@@ -3,8 +3,9 @@
 use strict;
 use warnings;
 
-use Test::More tests => 2;
 use Data::Validate::Type;
+use Test::FailWarnings;
+use Test::More tests => 2;
 
 
 my $variable = LocalTestChild->new();

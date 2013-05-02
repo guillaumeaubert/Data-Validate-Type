@@ -3,8 +3,9 @@
 use strict;
 use warnings;
 
-use Test::More tests => 5;
 use Test::Exception;
+use Test::FailWarnings;
+use Test::More tests => 5;
 
 use lib 't/';
 use LocalTest;
