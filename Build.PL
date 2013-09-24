@@ -4,6 +4,7 @@ use warnings;
 
 use Module::Build;
 
+
 my $class = Module::Build->subclass(
 	code =>
 	q|
