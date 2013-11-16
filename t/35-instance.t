@@ -75,13 +75,13 @@ foreach my $test ( @$tests )
 {
 	my $function_name = delete( $test->{'function_name'} );
 	my $function_type = delete( $test->{'function_type'} );
-	
+
 	subtest(
 		"Test function $function_name (type $function_type).",
 		sub
 		{
 			plan( tests => 3 );
-			
+
 			subtest(
 				'Test without arguments.',
 				sub
@@ -97,7 +97,7 @@ foreach my $test ( @$tests )
 					);
 				}
 			);
-			
+
 			subtest(
 				'Test with class=TestArrayBless.',
 				sub
@@ -118,7 +118,7 @@ foreach my $test ( @$tests )
 					);
 				}
 			);
-			
+
 			subtest(
 				'Test with class=TestHashBless.',
 				sub

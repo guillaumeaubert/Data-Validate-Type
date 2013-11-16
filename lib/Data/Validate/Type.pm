@@ -165,19 +165,19 @@ Boolean, default 1. Allow the string to be empty or not.
 sub is_string
 {
 	my ( $variable, %args ) = @_;
-	
+
 	# Check parameters.
 	my $allow_empty = delete( $args{'allow_empty'} );
 	$allow_empty = 1 unless defined( $allow_empty );
 	croak 'Arguments not recognized: ' . Data::Dump::dump( %args )
 		unless scalar( keys %args ) == 0;
-	
+
 	# Check variable.
 	return 0 if !defined( $variable ) || ref( $variable );
-	
+
 	# Check length if we don't allow empty strings.
 	return 0 if !$allow_empty && length( $variable ) == 0;
-	
+
 	return 1;
 }
 
@@ -188,13 +188,13 @@ Return a boolean indicating if the variable passed is an arrayref that can be
 dereferenced into an array.
 
 	my $is_arrayref = Data::Validate::Type::is_arrayref( $variable );
-	
+
 	my $is_arrayref = Data::Validate::Type::is_arrayref(
 		$variable,
 		allow_empty => 1,
 		no_blessing => 0,
 	);
-	
+
 	# Check if the variable is an arrayref of hashrefs.
 	my $is_arrayref = Data::Validate::Type::is_arrayref(
 		$variable,
@@ -232,7 +232,7 @@ must return a boolean indicating whether the element was valid or not.
 sub is_arrayref
 {
 	my ( $variable, %args ) = @_;
-	
+
 	# Check parameters.
 	my $allow_empty = delete( $args{'allow_empty'} );
 	$allow_empty = 1 unless defined( $allow_empty );
@@ -242,10 +242,10 @@ sub is_arrayref
 		if defined( $element_validate_type ) && !is_coderef( $element_validate_type );
 	croak 'Arguments not recognized: ' . Data::Dump::dump( %args )
 		unless scalar( keys %args ) == 0;
-	
+
 	# Check variable.
 	return 0 if !defined( $variable ) || !ref( $variable );
-	
+
 	if ( $no_blessing )
 	{
 		# The variable must be a standard arrayref.
@@ -261,10 +261,10 @@ sub is_arrayref
 				|| overload::Method( $variable, '@{}' )
 			);
 	}
-	
+
 	# Check size of the array if we require a non-empty array.
 	return 0 if !$allow_empty && scalar( @$variable ) == 0;
-	
+
 	# If we have an element validator specified, now that we know that we have
 	# an array, it's a good time to test the individual elements.
 	if ( defined( $element_validate_type ) )
@@ -274,7 +274,7 @@ sub is_arrayref
 			return 0 if !$element_validate_type->( $element );
 		}
 	}
-	
+
 	return 1;
 }
 
@@ -285,7 +285,7 @@ Return a boolean indicating if the variable passed is a hashref that can be
 dereferenced into a hash.
 
 	my $is_hashref = Data::Validate::Type::is_hashref( $variable );
-	
+
 	my $is_hashref = Data::Validate::Type::is_hashref(
 		$variable,
 		allow_empty => 1,
@@ -305,23 +305,23 @@ Boolean, default 1. Allow the array to be empty or not.
 Boolean, default 0. Require that the variable is not blessed.
 
 =back
-	
+
 =cut
 
 sub is_hashref
 {
 	my ( $variable, %args ) = @_;
-	
+
 	# Check parameters.
 	my $allow_empty = delete( $args{'allow_empty'} );
 	$allow_empty = 1 unless defined( $allow_empty );
 	my $no_blessing = delete( $args{'no_blessing'} ) || 0;
 	croak 'Arguments not recognized: ' . Data::Dump::dump( %args )
 		unless scalar( keys %args ) == 0;
-	
+
 	# Check variable.
 	return 0 if !defined( $variable ) || !ref( $variable );
-	
+
 	if ( $no_blessing )
 	{
 		# The variable must be a standard hashref.
@@ -337,10 +337,10 @@ sub is_hashref
 				|| overload::Method( $variable, '%{}' )
 			);
 	}
-	
+
 	# If we don't allow empty hashes, check keys.
 	return 0 if !$allow_empty && scalar( keys %$variable ) == 0;
-	
+
 	return 1;
 }
 
@@ -357,15 +357,15 @@ dereferenced into a block of code.
 sub is_coderef
 {
 	my ( $variable, %args ) = @_;
-	
+
 	# Check parameters.
 	croak 'Arguments not recognized: ' . Data::Dump::dump( %args )
 		unless scalar( keys %args ) == 0;
-	
+
 	# Check variable.
 	return 0 if !defined( $variable ) || !ref( $variable );
 	return 0 if ref( $variable ) ne 'CODE';
-	
+
 	return 1;
 }
 
@@ -403,23 +403,23 @@ Boolean, default 0. Set to 1 to check for a positive number.
 sub is_number
 {
 	my ( $variable, %args ) = @_;
-	
+
 	# Check parameters.
 	my $positive = delete( $args{'positive'} ) || 0;
 	my $strictly_positive = delete( $args{'strictly_positive'} ) || 0;
 	croak 'Arguments not recognized: ' . Data::Dump::dump( %args )
 		unless scalar( keys %args ) == 0;
-	
+
 	# Check variable.
 	return 0 if !defined( $variable ) || ref( $variable );
-	
+
 	# Requires Scalar::Util v1.18 or higher.
 	return 0 if !Scalar::Util::looks_like_number( $variable );
-	
+
 	# Check extra restrictions.
 	return 0 if $positive && $variable < 0;
 	return 0 if $strictly_positive && $variable <= 0;
-	
+
 	return 1;
 }
 
@@ -451,20 +451,20 @@ Required, the name of the class to check the variable against.
 sub is_instance
 {
 	my ( $variable, %args ) = @_;
-	
+
 	# Check parameters.
 	my $class = delete( $args{'class'} );
 	croak 'A class argument is required'
 		if !defined( $class ) || $class eq '';
 	croak 'Arguments not recognized: ' . Data::Dump::dump( %args )
 		unless scalar( keys %args ) == 0;
-	
+
 	# Check variable.
 	return 0 if !defined( $variable ) || !Scalar::Util::blessed( $variable );
-	
+
 	# Test that the object is a member if the class.
 	return 0 if !$variable->isa( $class );
-	
+
 	return 1;
 }
 
@@ -503,10 +503,10 @@ Boolean, default 1. Allow the string to be empty or not.
 sub assert_string
 {
 	my ( $variable, %args ) = @_;
-	
+
 	croak 'Not a string'
 		unless is_string( $variable, %args );
-	
+
 	return;
 }
 
@@ -517,13 +517,13 @@ Die unless the variable passed is an arrayref that can be dereferenced into an
 array.
 
 	Data::Validate::Type::assert_arrayref( $variable );
-	
+
 	Data::Validate::Type::assert_arrayref(
 		$variable,
 		allow_empty => 1,
 		no_blessing => 0,
 	);
-	
+
 	# Require the variable to be an arrayref of hashrefs.
 	Data::Validate::Type::assert_arrayref(
 		$variable,
@@ -561,10 +561,10 @@ must return a boolean indicating whether the element was valid or not.
 sub assert_arrayref
 {
 	my ( $variable, %args ) = @_;
-	
+
 	croak 'Not an arrayref'
 		unless is_arrayref( $variable, %args );
-	
+
 	return;
 }
 
@@ -574,7 +574,7 @@ sub assert_arrayref
 Die unless the variable passed is a hashref that can be dereferenced into a hash.
 
 	Data::Validate::Type::assert_hashref( $variable );
-	
+
 	Data::Validate::Type::assert_hashref(
 		$variable,
 		allow_empty => 1,
@@ -594,16 +594,16 @@ Boolean, default 1. Allow the array to be empty or not.
 Boolean, default 0. Require that the variable is not blessed.
 
 =back
-	
+
 =cut
 
 sub assert_hashref
 {
 	my ( $variable, %args ) = @_;
-	
+
 	croak 'Not a hashref'
 		unless is_hashref( $variable, %args );
-	
+
 	return;
 }
 
@@ -620,10 +620,10 @@ block of code.
 sub assert_coderef
 {
 	my ( $variable, %args ) = @_;
-	
+
 	croak 'Not a coderef'
 		unless is_coderef( $variable, %args );
-	
+
 	return;
 }
 
@@ -661,10 +661,10 @@ Boolean, default 0. Set to 1 to check for a positive number.
 sub assert_number
 {
 	my ( $variable, %args ) = @_;
-	
+
 	croak 'Not a number'
 		unless is_number( $variable, %args );
-	
+
 	return;
 }
 
@@ -696,10 +696,10 @@ Required, the name of the class to check the variable against.
 sub assert_instance
 {
 	my ( $variable, %args ) = @_;
-	
+
 	croak 'Not an instance of the class'
 		unless is_instance( $variable, %args );
-	
+
 	return;
 }
 
@@ -738,7 +738,7 @@ Boolean, default 1. Allow the string to be empty or not.
 sub filter_string
 {
 	my ( $variable, %args ) = @_;
-	
+
 	return is_string( $variable, %args )
 		? $variable
 		: undef;
@@ -751,13 +751,13 @@ Return the variable passed if it is an arrayref that can be dereferenced into an
 array, otherwise undef.
 
 	Data::Validate::Type::filter_arrayref( $variable );
-	
+
 	Data::Validate::Type::filter_arrayref(
 		$variable,
 		allow_empty => 1,
 		no_blessing => 0,
 	);
-	
+
 	# Only return the variable if it is an arrayref of hashrefs.
 	Data::Validate::Type::filter_arrayref(
 		$variable,
@@ -795,7 +795,7 @@ must return a boolean indicating whether the element was valid or not.
 sub filter_arrayref
 {
 	my ( $variable, %args ) = @_;
-	
+
 	return is_arrayref( $variable, %args )
 		? $variable
 		: undef;
@@ -808,7 +808,7 @@ Return the variable passed if it is a hashref that can be dereferenced into a
 hash, otherwise return undef.
 
 	Data::Validate::Type::filter_hashref( $variable );
-	
+
 	Data::Validate::Type::filter_hashref(
 		$variable,
 		allow_empty => 1,
@@ -828,13 +828,13 @@ Boolean, default 1. Allow the array to be empty or not.
 Boolean, default 0. Require that the variable is not blessed.
 
 =back
-	
+
 =cut
 
 sub filter_hashref
 {
 	my ( $variable, %args ) = @_;
-	
+
 	return is_hashref( $variable, %args )
 		? $variable
 		: undef;
@@ -853,7 +853,7 @@ block of code, otherwise return undef.
 sub filter_coderef
 {
 	my ( $variable, %args ) = @_;
-	
+
 	return is_coderef( $variable, %args )
 		? $variable
 		: undef;
@@ -893,7 +893,7 @@ Boolean, default 0. Set to 1 to check for a positive number.
 sub filter_number
 {
 	my ( $variable, %args ) = @_;
-	
+
 	return is_number( $variable, %args )
 		? $variable
 		: undef;
@@ -927,7 +927,7 @@ Required, the name of the class to check the variable against.
 sub filter_instance
 {
 	my ( $variable, %args ) = @_;
-	
+
 	return is_instance( $variable, %args )
 		? $variable
 		: undef;

@@ -30,13 +30,13 @@ foreach my $test ( @$tests )
 {
 	my $function_name = delete( $test->{'function_name'} );
 	my $function_type = delete( $test->{'function_type'} );
-	
+
 	subtest(
 		"Test function $function_name (type $function_type).",
 		sub
 		{
 			plan( tests => 1 );
-			
+
 			subtest(
 				'Test without arguments.',
 				sub
