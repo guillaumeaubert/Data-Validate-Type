@@ -3,18 +3,18 @@ abstract: 'Data type validation functions.'
 author:
   - 'Guillaume Aubert <aubertg@cpan.org>'
 build_requires:
-  File::Spec: 0
-  Test::Exception: 0
-  Test::FailWarnings: 0
-  Test::More: 0.94
+  File::Spec: '0'
+  Test::Exception: '0'
+  Test::FailWarnings: '0'
+  Test::More: '0.94'
 configure_requires:
-  Module::Build: 0
+  Module::Build: '0'
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4005, CPAN::Meta::Converter version 2.131560'
-license: open_source
+generated_by: 'Module::Build version 0.4205, CPAN::Meta::Converter version 2.140640'
+license: gpl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: Data-Validate-Type
 no_index:
   file:
@@ -27,11 +27,11 @@ provides:
     file: lib/Data/Validate/Type.pm
     version: v1.4.2
 requires:
-  Carp: 0
-  Data::Dump: 0
-  Exporter: 0
-  Scalar::Util: 1.18
-  perl: 5.006
+  Carp: '0'
+  Data::Dump: '0'
+  Exporter: '0'
+  Scalar::Util: '1.18'
+  perl: '5.006'
 resources:
   bugtracker: https://github.com/guillaumeaubert/Data-Validate-Type/issues
   homepage: https://metacpan.org/release/Data-Validate-Type
