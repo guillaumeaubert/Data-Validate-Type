@@ -1,5 +1,11 @@
 Revision history for Data-Validate-Type
 
+v1.4.3  2014-04-20
+        - Fixed "package version matches dist version" for CPANTS.
+        - Fixed license declared in meta files.
+        - Switched README to Markdown.
+        - General cleanup.
+
 v1.4.2  2013-05-01
         - Fixed missing prerequisite.
 
