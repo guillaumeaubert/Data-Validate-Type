@@ -142,6 +142,14 @@ my $test_data =
 			[],
 		],
 	},
+	{
+		key         => 'regex',
+		data        => qr/test/,
+	},
+	{
+		key         => 'empty_regex',
+		data        => qr/test/,
+	},
 ];
 
 
