@@ -66,11 +66,11 @@ Data::Validate::Type - Data type validation functions.
 
 =head1 VERSION
 
-Version 1.4.3
+Version 1.5.0
 
 =cut
 
-our $VERSION = '1.4.3';
+our $VERSION = '1.5.0';
 
 
 =head1 SYNOPSIS
