@@ -20,6 +20,7 @@ t/25-coderef.t
 t/30-number.t
 t/35-instance.t
 t/36-instance-inheritance.t
+t/40-regex.t
 t/90-export-all.t
 t/91-export-boolean_functions.t
 t/92-export-assertions.t
