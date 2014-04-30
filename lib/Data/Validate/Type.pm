@@ -16,6 +16,7 @@ my @boolean_functions_list = qw(
 	is_coderef
 	is_number
 	is_instance
+	is_regex
 );
 
 my @assertion_functions_list = qw(
@@ -25,6 +26,7 @@ my @assertion_functions_list = qw(
 	assert_coderef
 	assert_number
 	assert_instance
+	assert_regex
 );
 
 my @filtering_functions_list = qw(
@@ -34,6 +36,7 @@ my @filtering_functions_list = qw(
 	filter_coderef
 	filter_number
 	filter_instance
+	filter_regex
 );
 
 our @EXPORT_OK =
@@ -469,6 +472,25 @@ sub is_instance
 }
 
 
+=head2 is_regex()
+
+Return a boolean indicating if the variable is a regular expression.
+
+	my $is_regex = Data::Validate::Type::is_regex( $variable );
+
+=cut
+
+sub is_regex
+{
+	my ( $variable ) = @_;
+
+	# Check variable.
+	return defined( $variable ) && ( ref( $variable ) eq 'Regexp' )
+		? 1
+		: 0;
+}
+
+
 =head1 ASSERTION-BASED FUNCTIONS
 
 Functions in this group do not return anything, but will die when the parameters
@@ -704,6 +726,25 @@ sub assert_instance
 }
 
 
+=head2 assert_regex()
+
+Die unless the variable is a regular expression.
+
+	Data::Validate::Type::assert_regex( $variable );
+
+=cut
+
+sub assert_regex
+{
+	my ( $variable ) = @_;
+
+	croak 'Not a regular expression'
+		unless is_regex( $variable );
+
+	return;
+}
+
+
 =head1 FILTERING FUNCTIONS
 
 Functions in this group return the variable tested against when it matches the
@@ -929,6 +970,24 @@ sub filter_instance
 	my ( $variable, %args ) = @_;
 
 	return is_instance( $variable, %args )
+		? $variable
+		: undef;
+}
+
+
+=head2 filter_regex()
+
+Return the variable passed if it is a regular expression.
+
+	Data::Validate::Type::filter_regex( $variable );
+
+=cut
+
+sub filter_regex
+{
+	my ( $variable ) = @_;
+
+	return is_regex( $variable )
 		? $variable
 		: undef;
 }
