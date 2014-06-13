@@ -884,7 +884,7 @@ sub filter_hashref
 
 =head2 filter_coderef()
 
-REturn the variable passed if it is a coderef that can be dereferenced into a
+Return the variable passed if it is a coderef that can be dereferenced into a
 block of code, otherwise return undef.
 
 	Data::Validate::Type::filter_coderef( $variable );
