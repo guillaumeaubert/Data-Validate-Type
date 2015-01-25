@@ -1,8 +1,8 @@
 Data-Validate-Type
 ==================
 
-[![Build Status](https://travis-ci.org/guillaumeaubert/Data-Validate-Type.png?branch=master)](https://travis-ci.org/guillaumeaubert/Data-Validate-Type)
-[![Coverage Status](https://coveralls.io/repos/guillaumeaubert/Data-Validate-Type/badge.png?branch=master)](https://coveralls.io/r/guillaumeaubert/Data-Validate-Type?branch=master)
+[![Build Status](https://travis-ci.org/guillaumeaubert/Data-Validate-Type.svg?branch=master)](https://travis-ci.org/guillaumeaubert/Data-Validate-Type)
+[![Coverage Status](https://coveralls.io/repos/guillaumeaubert/Data-Validate-Type/badge.svg?branch=master)](https://coveralls.io/r/guillaumeaubert/Data-Validate-Type?branch=master)
 
 Data::Validate::Type is a public interface encapsulating Params::Util to offer
 data type validation functions that pass PerlCritic.
