@@ -41,7 +41,6 @@ my $builder = $class->new(
 	dist_version_from    => 'lib/Data/Validate/Type.pm',
 	build_requires       =>
 	{
-		'File::Spec'            => 0,
 		'Test::Exception'       => 0,
 		'Test::FailWarnings'    => 0,
 		'Test::More'            => 0.94, # Required for subtest().

@@ -3,23 +3,22 @@ require 5.006;
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
+  'test' => {
+              'TESTS' => 't/*.t'
+            },
+  'PL_FILES' => {},
+  'INSTALLDIRS' => 'site',
   'NAME' => 'Data::Validate::Type',
+  'EXE_FILES' => [],
   'VERSION_FROM' => 'lib/Data/Validate/Type.pm',
   'PREREQ_PM' => {
-                   'Carp' => 0,
-                   'Data::Dump' => 0,
-                   'Exporter' => 0,
-                   'File::Spec' => 0,
                    'Scalar::Util' => '1.18',
                    'Test::Exception' => 0,
                    'Test::FailWarnings' => 0,
-                   'Test::More' => '0.94'
-                 },
-  'INSTALLDIRS' => 'site',
-  'EXE_FILES' => [],
-  'PL_FILES' => {},
-  'test' => {
-              'TESTS' => 't/*.t'
-            }
+                   'Exporter' => 0,
+                   'Carp' => 0,
+                   'Test::More' => '0.94',
+                   'Data::Dump' => 0
+                 }
 )
 ;
