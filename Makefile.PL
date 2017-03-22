@@ -6,18 +6,18 @@ WriteMakefile
   'test' => {
               'TESTS' => 't/*.t'
             },
-  'PL_FILES' => {},
-  'INSTALLDIRS' => 'site',
   'NAME' => 'Data::Validate::Type',
   'EXE_FILES' => [],
+  'INSTALLDIRS' => 'site',
   'VERSION_FROM' => 'lib/Data/Validate/Type.pm',
+  'PL_FILES' => {},
   'PREREQ_PM' => {
                    'Scalar::Util' => '1.18',
-                   'Test::Exception' => 0,
-                   'Test::FailWarnings' => 0,
-                   'Exporter' => 0,
-                   'Carp' => 0,
                    'Test::More' => '0.94',
+                   'Test::Exception' => 0,
+                   'Carp' => 0,
+                   'Exporter' => 0,
+                   'Test::FailWarnings' => 0,
                    'Data::Dump' => 0
                  }
 )

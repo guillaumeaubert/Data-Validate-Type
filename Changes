@@ -1,5 +1,9 @@
 Revision history for Data-Validate-Type
 
+v1.6.0  2017-03-21
+        - Relicensed under Perl 5 terms.
+        - Cleaned up dependencies. Thank you, Justin Cook!
+
 v1.5.1  2014-06-13
         - Fixed typo in documentation.
 

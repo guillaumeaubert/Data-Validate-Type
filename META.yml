@@ -24,7 +24,7 @@ no_index:
 provides:
   Data::Validate::Type:
     file: lib/Data/Validate/Type.pm
-    version: v1.5.1
+    version: v1.6.0
 requires:
   Carp: '0'
   Data::Dump: '0'
@@ -36,4 +36,4 @@ resources:
   homepage: https://metacpan.org/release/Data-Validate-Type
   license: http://dev.perl.org/licenses/
   repository: https://github.com/guillaumeaubert/Data-Validate-Type
-version: v1.5.1
+version: v1.6.0

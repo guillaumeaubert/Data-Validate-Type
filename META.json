@@ -48,7 +48,7 @@
    "provides" : {
       "Data::Validate::Type" : {
          "file" : "lib/Data/Validate/Type.pm",
-         "version" : "v1.5.1"
+         "version" : "v1.6.0"
       }
    },
    "release_status" : "stable",
@@ -64,5 +64,5 @@
          "url" : "https://github.com/guillaumeaubert/Data-Validate-Type"
       }
    },
-   "version" : "v1.5.1"
+   "version" : "v1.6.0"
 }
