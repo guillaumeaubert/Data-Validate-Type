@@ -4,7 +4,7 @@ v1.5.1  2014-06-13
         - Fixed typo in documentation.
 
 v1.5.0  2014-04-29
-				- Added is_regex(), assert_regex(), and filter_regex().
+        - Added is_regex(), assert_regex(), and filter_regex().
 
 v1.4.3  2014-04-20
         - Fixed "package version matches dist version" for CPANTS.
